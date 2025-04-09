@@ -22,18 +22,22 @@ It was developed as part of the AT&T TDP 2025 home assignment.
 - Maven
 
 ### Run the App
+**To get started, clone the repository using: git clone https://github.com/Yfabri7/popcorn-palace.git**
 1. Start MySQL using Docker Compose:
-   (bash): docker-compose up -d 
+   (bash):
+   docker-compose up -d 
 
-2. Run the application via your IDE or with Maven:
-   (bash): mvn spring-boot:run
+3. Run the application via your IDE or with Maven:
+   (bash):
+   mvn spring-boot:run
 
-3. The app will be available at:  
+4. The app will be available at:  
    http://localhost:8080
 
 ## Tests
 Run all tests with:
-(bash): mvn clean test
+(bash):
+mvn clean test
 
 Includes unit and integration tests for:
 - MovieService / Controller  
