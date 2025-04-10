@@ -75,7 +75,7 @@ src/
 | Get      | GET    | /movies/{movie_id}        |
 | Get All  | GET    | /movies                   |
 | Create   | POST   | /movies                   |
-| Update   | POST   | /movies/update/{movie_id} |
+| Update   | PUT    | /movies/update/{movie_id} |
 | Delete   | DELETE | /movies/{movie_id}        |
 
 ### Showtimes
@@ -84,7 +84,7 @@ src/
 | Get      | GET    | /showtimes/{showtime_id}        |
 | Get All  | GET    | /showtimes                      |
 | Create   | POST   | /showtimes                      |
-| Update   | POST   | /showtimes/update/{showtime_id} |
+| Update   | PUT    | /showtimes/update/{showtime_id} |
 | Delete   | DELETE | /showtimes/{showtime_id}        |
 
 ### Bookings
