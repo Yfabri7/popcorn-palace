@@ -33,8 +33,6 @@ public class MovieLoader {
 
             movieRepository.save(inception);
             movieRepository.save(matrix);
-
-            System.out.println("Sample movies loaded into the database.");
         }
     }
 }

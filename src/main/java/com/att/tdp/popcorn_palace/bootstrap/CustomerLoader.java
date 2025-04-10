@@ -27,8 +27,6 @@ public class CustomerLoader {
 
             customerRepository.save(alice);
             customerRepository.save(bob);
-
-            System.out.println("Sample customers loaded into the database.");
         }
     }
 }
