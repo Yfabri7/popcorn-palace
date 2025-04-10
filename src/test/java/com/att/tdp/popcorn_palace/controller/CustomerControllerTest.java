@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -64,7 +63,11 @@ class CustomerControllerTest {
     @Test
     @DisplayName("POST /customers - should return created customer")
     void createCustomer_shouldReturnCreated() throws Exception {
-        when(customerRepository.save(Mockito.any(Customer.class))).thenReturn(customer);
+        when(customerService.createCustomer(Mockito.any(Customer.class))).thenAnswer(invocation -> {
+            Customer input = invocation.getArgument(0);
+            input.setId(1L);
+            return input;
+        });
 
         mockMvc.perform(post("/customers")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -78,7 +81,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("GET /customers - should return all customers")
     void getAllCustomers_shouldReturnList() throws Exception {
-        when(customerRepository.findAll()).thenReturn(List.of(customer));
+        when(customerService.getAllCustomers()).thenReturn(List.of(customer));
 
         mockMvc.perform(get("/customers"))
                 .andExpect(status().isOk())
@@ -91,7 +94,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("GET /customers/{id} - valid ID should return customer")
     void getCustomerById_valid_shouldReturnCustomer() throws Exception {
-        when(customerRepository.findById(1L)).thenReturn(Optional.of(customer));
+        when(customerService.getCustomerById(1L)).thenReturn(customer);
 
         mockMvc.perform(get("/customers/1"))
                 .andExpect(status().isOk())
@@ -103,7 +106,7 @@ class CustomerControllerTest {
     @Test
     @DisplayName("GET /customers/{id} - non-existent ID should return 404")
     void getCustomerById_notFound_shouldReturn404() throws Exception {
-        when(customerRepository.findById(99L)).thenReturn(Optional.empty());
+        when(customerService.getCustomerById(99L)).thenThrow(new EntityNotFoundException("Customer not found with id: 99"));
 
         mockMvc.perform(get("/customers/99"))
                 .andExpect(status().isNotFound());

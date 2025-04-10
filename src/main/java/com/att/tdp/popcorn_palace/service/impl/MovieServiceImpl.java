@@ -10,6 +10,7 @@ import com.att.tdp.popcorn_palace.repository.MovieRepository;
 import com.att.tdp.popcorn_palace.repository.ShowtimeRepository;
 import com.att.tdp.popcorn_palace.service.MovieService;
 import jakarta.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +47,14 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public MovieResponse getMovieById(Long id) {
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Movie with id " + id + " not found"));
+
+        return mapToResponse(movie);
+    }
+
+    @Override
     public List<MovieResponse> getAllMovies() {
         return movieRepository.findAll().stream()
                 .map(this::mapToResponse)
@@ -55,7 +64,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public MovieResponse updateMovie(Long id, MovieUpdateRequest request) {
         Movie movie = movieRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Movie not found with id " + id));
+            .orElseThrow(() -> new EntityNotFoundException("Movie with id " + id + " not found"));
 
         movie.setTitle(request.getTitle());
         movie.setGenre(request.getGenre());
@@ -67,7 +76,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public void deleteMovie(Long id) {
         Movie movie = movieRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Movie not found"));
+            .orElseThrow(() -> new EntityNotFoundException("Movie with id " + id + " not found"));
 
         List<Showtime> showtimes = showtimeRepository.findByMovie(movie);
         if (!showtimes.isEmpty()) {

@@ -72,45 +72,47 @@ src/
 ### Movies
 | Action   | Method | Endpoint                  |
 |----------|--------|---------------------------|
-| Get All  | GET    | /movies/all               |
+| Get      | GET    | /movies/{movie_id}        |
+| Get All  | GET    | /movies                   |
 | Create   | POST   | /movies                   |
-| Update   | POST   | /movies/update/{movie_id}    |
-| Delete   | DELETE | /movies/{movie_id}           |
+| Update   | POST   | /movies/update/{movie_id} |
+| Delete   | DELETE | /movies/{movie_id}        |
 
 ### Showtimes
 | Action   | Method | Endpoint                        |
 |----------|--------|---------------------------------|
-| Get      | GET    | /showtimes/{showtime_id}                 |
+| Get      | GET    | /showtimes/{showtime_id}        |
+| Get All  | GET    | /showtimes                      |
 | Create   | POST   | /showtimes                      |
-| Update   | POST   | /showtimes/update/{showtime_id}          |
-| Delete   | DELETE | /showtimes/{showtime_id}                 |
+| Update   | POST   | /showtimes/update/{showtime_id} |
+| Delete   | DELETE | /showtimes/{showtime_id}        |
 
 ### Bookings
-| Action   | Method | Endpoint         |
-|----------|--------|------------------|
-| Book     | POST   | /bookings        |
-| Get One  | GET    | /bookings/{booking_id}   |
-| Cancel   | DELETE | /bookings/{booking_id}   |
+| Action   | Method | Endpoint               |
+|----------|--------|------------------------|
+| Get      | GET    | /bookings/{booking_id} |
+| Get All  | GET    | /bookings              |
+| Create   | POST   | /bookings              |
+| Delete   | DELETE | /bookings/{booking_id} |
 
 ### Customers
-| Action         | Method | Endpoint                       |
-|----------------|--------|--------------------------------|
-| Create         | POST   | /customers                     |
-| Get All        | GET    | /customers                     |
-| Get by ID      | GET    | /customers/{customer_id}                |
-| Delete         | DELETE | /customers/{customer_id}                |
-| View Bookings  | GET    | /customers/{customer_id}/bookings       |
+| Action         | Method | Endpoint                          |
+|----------------|--------|-----------------------------------|
+| Get            | GET    | /customers/{customer_id}          |
+| Get All        | GET    | /customers                        |
+| View Bookings  | GET    | /customers/{customer_id}/bookings |
+| Create         | POST   | /customers                        |
+| Delete         | DELETE | /customers/{customer_id}          |
 
 ## Notes
 - A showtime **can** be updated even if it has bookings.
-- A customer **cannot** be deleted if they have existing bookings.
+- A customer, movie, showtime **cannot** be deleted if they have existing bookings.
 - Booking a seat that's already taken returns a `409 Conflict`.
 - Validation is enforced for fields like names, emails, prices, and times.
-- DTO-based architecture prevents entity leakage to the client.
 
 ## Utilities
 - `docker-compose.yml` - launches MySQL with appropriate credentials
-- `schema.sql` / `data.sql` – optional fallback, but data is injected via `@PostConstruct` loaders
+- `schema.sql` – optional fallback, but data is injected via `@PostConstruct` loaders
 
 ## Database Configuration (MySQL)
 - **Host:** localhost  

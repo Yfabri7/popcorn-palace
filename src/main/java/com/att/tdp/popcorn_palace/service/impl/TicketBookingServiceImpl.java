@@ -65,7 +65,7 @@ public class TicketBookingServiceImpl implements TicketBookingService {
     @Override
     public TicketBookingResponse getBooking(Long id) {
         TicketBooking booking = bookingRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Booking not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Booking with id " + id + " not found"));
         return TicketBookingResponse.fromEntity(booking);
     }
 
@@ -73,7 +73,7 @@ public class TicketBookingServiceImpl implements TicketBookingService {
     @Transactional
     public void cancelBooking(Long id) {
         if (!bookingRepository.existsById(id)) {
-            throw new EntityNotFoundException("Booking not found");
+            throw new EntityNotFoundException("Booking with id " + id + " not found");
         }
         bookingRepository.deleteById(id);
     }

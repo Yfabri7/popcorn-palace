@@ -4,10 +4,7 @@ import com.att.tdp.popcorn_palace.dto.CustomerRequest;
 import com.att.tdp.popcorn_palace.dto.CustomerResponse;
 import com.att.tdp.popcorn_palace.dto.TicketBookingResponse;
 import com.att.tdp.popcorn_palace.model.Customer;
-import com.att.tdp.popcorn_palace.repository.CustomerRepository;
 import com.att.tdp.popcorn_palace.service.CustomerService;
-
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +16,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/customers")
 public class CustomerController {
 
-    private final CustomerRepository repository;
     private final CustomerService customerService;
 
-    public CustomerController(CustomerRepository repository, CustomerService customerService) {
-        this.repository = repository;
+    public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
 
@@ -33,13 +28,13 @@ public class CustomerController {
         customer.setFullName(request.getFullName());
         customer.setEmail(request.getEmail());
 
-        Customer saved = repository.save(customer);
+        Customer saved = customerService.createCustomer(customer);
         return ResponseEntity.ok(toResponse(saved));
     }
 
     @GetMapping
     public ResponseEntity<List<CustomerResponse>> getAll() {
-        List<CustomerResponse> customers = repository.findAll().stream()
+        List<CustomerResponse> customers = customerService.getAllCustomers().stream()
                 .map(this::toResponse)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(customers);
@@ -47,8 +42,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable Long id) {
-        Customer customer = repository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Customer not found with id: " + id));
+        Customer customer = customerService.getCustomerById(id);
         return ResponseEntity.ok(toResponse(customer));
     }
 

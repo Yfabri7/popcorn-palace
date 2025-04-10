@@ -51,7 +51,7 @@ public class ShowtimeServiceImpl implements ShowtimeService {
     @Override
     public Showtime getShowtime(Long id) {
         return showtimeRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Showtime not found with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Showtime with id " + id + " not found"));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class ShowtimeServiceImpl implements ShowtimeService {
     @Override
     public void deleteShowtime(Long id) {
         Showtime showtime = showtimeRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Showtime not found"));
+            .orElseThrow(() -> new EntityNotFoundException("Showtime with id " + id + " not found"));
     
         boolean hasBookings = bookingRepository.existsByShowtime(showtime);
         if (hasBookings) {
