@@ -1,5 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/dto/TicketBookingRequest.java
-
 package com.att.tdp.popcorn_palace.dto;
 
 import com.att.tdp.popcorn_palace.model.Customer;

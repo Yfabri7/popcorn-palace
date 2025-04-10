@@ -1,4 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/dto/MovieResponse.java
 package com.att.tdp.popcorn_palace.dto;
 
 public class MovieResponse {

@@ -1,4 +1,3 @@
-// File: src/test/java/com/att/tdp/popcorn_palace/service/CustomerServiceTest.java
 package com.att.tdp.popcorn_palace.service;
 
 import com.att.tdp.popcorn_palace.model.Customer;

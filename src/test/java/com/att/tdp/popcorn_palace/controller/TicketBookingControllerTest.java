@@ -1,4 +1,3 @@
-// File: src/test/java/com/att/tdp/popcorn_palace/controller/TicketBookingControllerTest.java
 package com.att.tdp.popcorn_palace.controller;
 
 import com.att.tdp.popcorn_palace.dto.TicketBookingRequest;

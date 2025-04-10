@@ -1,4 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/service/impl/CustomerServiceImpl.java
 package com.att.tdp.popcorn_palace.service.impl;
 
 import com.att.tdp.popcorn_palace.model.Customer;

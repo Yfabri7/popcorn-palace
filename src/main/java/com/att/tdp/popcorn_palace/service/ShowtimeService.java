@@ -1,4 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/service/ShowtimeService.java
 package com.att.tdp.popcorn_palace.service;
 
 import com.att.tdp.popcorn_palace.model.Showtime;

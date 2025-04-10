@@ -1,4 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/dto/MovieCreateRequest.java
 package com.att.tdp.popcorn_palace.dto;
 
 import jakarta.validation.constraints.*;

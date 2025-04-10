@@ -1,4 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/service/MovieService.java
 package com.att.tdp.popcorn_palace.service;
 
 import com.att.tdp.popcorn_palace.dto.MovieCreateRequest;

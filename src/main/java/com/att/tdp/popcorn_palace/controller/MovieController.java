@@ -1,4 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/controller/MovieController.java
 package com.att.tdp.popcorn_palace.controller;
 
 import com.att.tdp.popcorn_palace.dto.MovieCreateRequest;

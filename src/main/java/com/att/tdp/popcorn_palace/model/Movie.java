@@ -1,4 +1,3 @@
-// File: src/main/java/com/att/tdp/popcorn_palace/model/Movie.java
 package com.att.tdp.popcorn_palace.model;
 
 import jakarta.persistence.*;
